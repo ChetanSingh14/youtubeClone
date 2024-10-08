@@ -51,7 +51,7 @@
    align-items: center;
  }
  
- .grp3 img {
+ .grp3>img {
    height: 24px;
    margin-left: 20px;
    cursor: pointer;
@@ -62,6 +62,10 @@
    filter: brightness(0.8);
  }
  
+ .signIn{
+  margin-left: 10px;
+  
+ }
  /* Default styles for YouTube logo */
  .yt {
    height: 28px;
@@ -88,3 +92,4 @@
      padding: 10px;
    }
  }
+

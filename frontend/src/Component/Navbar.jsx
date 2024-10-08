@@ -7,6 +7,7 @@ import voice from '../assets/voice.svg';
 import notif from '../assets/notif.svg';
 import menu from '../assets/3dot.svg';
 import profile from '../assets/profile.svg';
+import SignInandLogOut from './SignInandAvatar';
 
 export default function Navbar() {
    return (
@@ -26,7 +27,7 @@ export default function Navbar() {
          <div className={styles.grp3}>
             <img src={upload} alt="Upload Icon" />
             <img src={notif} alt="Notification Icon" />
-            <img src={profile} alt="Profile Icon aka Avatar" />
+            <SignInandLogOut/>
          </div>
       </div>
    );
