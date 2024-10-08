@@ -1,8 +1,8 @@
 import React from 'react';
-import SideBar from './component/SideBar'
+import SideBar from './Component/SideBar'
 import Filter from './Component/Filter';
 import { Routes, Route } from 'react-router-dom';
-import SignUp from './component/SignUp';
+import SignUp from './Component/SignUp';
 
 export default function App() {
   return (
