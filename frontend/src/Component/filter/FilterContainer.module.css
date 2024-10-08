@@ -22,7 +22,7 @@
 .filterItem {
     padding: 10px 20px;
     margin-right: 10px;
-    background-color: rgb(57, 55, 55);
+    background-color: rgb(57, 55, 55); /* Base background color */
     color: aliceblue;
     font-size: 14px;
     font-weight: bold;
@@ -32,6 +32,12 @@
 }
 
 .filterItem:hover {
+    background-color: rgb(77, 75, 75); /* Slightly brighter than the base color */
+    color: rgb(255, 255, 255);
+}
+
+.filterItem.active {
     background-color: rgb(255, 255, 255);
     color: rgb(11, 11, 11);
 }
+

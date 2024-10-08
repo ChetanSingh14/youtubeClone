@@ -7,6 +7,7 @@ import voice from "../../assets/voice.svg";
 import yt from "../../assets/yt.png";
 import SearchBar from "./SearchBar";
 import styles from "./Navbar.module.css";
+import SignInandLogOut from '../authorization/SignInandAvatar';
 
 export default function Navbar() {
   return (
@@ -22,7 +23,8 @@ export default function Navbar() {
       <div className={styles.grp3}>
         <img src={upload} alt="Upload Icon" />
         <img src={notif} alt="Notification Icon" />
-        <img src={profile} alt="Profile Icon aka Avatar" />
+        {/* <img src={profile} alt="Profile Icon aka Avatar" /> */}
+        <SignInandLogOut/>
       </div>
     </div>
   );

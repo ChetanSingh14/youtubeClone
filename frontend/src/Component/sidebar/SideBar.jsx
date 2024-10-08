@@ -1,61 +1,68 @@
 import React, { useState } from "react";
 import styles from "./SideBar.module.css";
-import HomeIcon from "@mui/icons-material/Home";
-import WhatshotIcon from "@mui/icons-material/Whatshot";
-import SubscriptionsIcon from "@mui/icons-material/Subscriptions";
-import QueueIcon from "@mui/icons-material/Queue";
-import HistoryIcon from "@mui/icons-material/History";
-import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
+import home from '../../assets/home.svg';
+import shorts from '../../assets/shorts.svg';
+import subscription from '../../assets/subscription.svg';
+import music from '../../assets/music.svg';
+import you from '../../assets/your_channel.svg';
+import download from '../../assets/download.svg';
 
 export default function SideBar() {
-  const [activeItem, setActiveItem] = useState(null); // Change here
+  const [activeItem, setActiveItem] = useState(null);
 
   const handleClick = (item) => {
-    setActiveItem(item);
+    // Toggle the active item (if it's already active, set it to null)
+    setActiveItem(activeItem === item ? null : item);
   };
 
   return (
     <div className={styles.outer}>
       <div className={styles.menuItems}>
         <div onClick={() => handleClick("home")}>
-          <HomeIcon
-            fontSize="medium"
+          <img
+            src={home}
+            alt="Home"
             className={`${styles.menuItem} ${activeItem === "home" ? styles.active : ""}`}
           />
         </div>
 
-        <div onClick={() => handleClick("trending")}>
-          <WhatshotIcon
-            fontSize="medium"
-            className={`${styles.menuItem} ${activeItem === "trending" ? styles.active : ""}`}
+        <div onClick={() => handleClick("shorts")}>
+          <img
+            src={shorts}
+            alt="Shorts"
+            className={`${styles.menuItem} ${activeItem === "shorts" ? styles.active : ""}`}
           />
         </div>
 
         <div onClick={() => handleClick("subscriptions")}>
-          <SubscriptionsIcon
-            fontSize="medium"
+          <img
+            src={subscription}
+            alt="Subscriptions"
             className={`${styles.menuItem} ${activeItem === "subscriptions" ? styles.active : ""}`}
           />
         </div>
 
-        <div onClick={() => handleClick("queue")}>
-          <QueueIcon
-            fontSize="medium"
-            className={`${styles.menuItem} ${activeItem === "queue" ? styles.active : ""}`}
+        <div onClick={() => handleClick("music")}>
+          <img
+            src={music}
+            alt="Music"
+            className={`${styles.menuItem} ${activeItem === "music" ? styles.active : ""}`}
           />
         </div>
 
-        <div onClick={() => handleClick("history")}>
-          <HistoryIcon
-            fontSize="medium"
-            className={`${styles.menuItem} ${activeItem === "history" ? styles.active : ""}`}
+        <div onClick={() => handleClick("you")}>
+          <img
+            src={you}
+            alt="Your Channel"
+            className={`${styles.menuItem} ${activeItem === "you" ? styles.active : ""}`}
           />
         </div>
 
-        <div onClick={() => handleClick("liked")}>
-          <ThumbUpOffAltIcon
-            fontSize="medium"
-            className={`${styles.menuItem} ${activeItem === "liked" ? styles.active : ""}`}
+        <div onClick={() => handleClick("downloads")}>
+          <img
+            src={download}
+            alt="Downloads"
+            className={`${styles.menuItem} ${activeItem === "downloads" ? styles.active : ""}`}
           />
         </div>
       </div>
