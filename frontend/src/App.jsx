@@ -4,6 +4,7 @@ import Filter from './Component/Filter';
 import { Routes, Route } from 'react-router-dom';
 import SignUp from './Component/SignUp';
 import Navbar from './Component/Navbar';
+import SignInandLogOut from './Component/SignInandAvatar';
 
 export default function App() {
   return (
