@@ -43,11 +43,6 @@ export default function Filter() {
 
   return (
     <div className={styles.filter}>
-      {/* Button to toggle the filter panel */}
-      <button onClick={toggleFilterPanel} className={styles.toggleButton}>
-        {isOpen ? "Close Filter" : "Open Filter"}
-      </button>
-
       {/* Filter Panel */}
       <div className={`${styles.filterPanel} ${isOpen ? styles.open : ""}`}>
         <FilterContainer filter={filter} />

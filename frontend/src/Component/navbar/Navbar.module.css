@@ -3,12 +3,12 @@
    align-items: center;
    padding: 10px 15px;
    background-color: #030303;
-   height: 56px;
+   height: 52px;
    width: 98%;
    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
    position: fixed;
    top: 0;
-   left: 0;
+   left: -0.5rem;
    z-index: 1000;
  }
  .nav_filter{
@@ -20,14 +20,14 @@
  }
  
  .menu_yt img {
-   height: 24px;
+   /* height: 24px; */
    margin-right: 16px;
    cursor: pointer;
  }
  
- .menu_yt img:nth-child(2) {
+ /* .menu_yt img:nth-child(2) {
    height: 28px;
- }
+ } */
  
  .search {
    display: flex;
@@ -82,6 +82,7 @@
  }
  .menu{
    padding: 0.72rem;
+   height: 2rem;
  }
  @media (max-width: 768px) {
    .search {
@@ -92,4 +93,3 @@
      padding: 10px;
    }
  }
-
