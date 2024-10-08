@@ -12,7 +12,7 @@ export default function App() {
         <Route path='/auth' element={<SignUp/>}></Route>
       </Routes>
       <Filter/>
-    
+    </div>
   )
 }
 
