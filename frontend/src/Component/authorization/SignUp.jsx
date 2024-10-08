@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "./SignUp.module.css";
 import CloseIcon from "@mui/icons-material/Close";
-import googleIcon from "../assets/google.svg";
+import googleIcon from "../../assets/google.svg";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function SignUp() {
