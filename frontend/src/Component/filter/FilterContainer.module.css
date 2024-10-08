@@ -1,0 +1,43 @@
+.containerHead {
+    overflow-x: auto;
+    white-space: nowrap;
+    width: 100%;
+    padding: 10px 0;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.containerHead::-webkit-scrollbar {
+    display: none;
+}
+
+.filterList {
+    display: inline-flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.filterItem {
+    padding: 10px 20px;
+    margin-right: 10px;
+    background-color: rgb(57, 55, 55); /* Base background color */
+    color: aliceblue;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.filterItem:hover {
+    background-color: rgb(77, 75, 75); /* Slightly brighter than the base color */
+    color: rgb(255, 255, 255);
+}
+
+.filterItem.active {
+    background-color: rgb(255, 255, 255);
+    color: rgb(11, 11, 11);
+}
+

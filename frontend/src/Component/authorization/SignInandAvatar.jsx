@@ -2,7 +2,7 @@ import React from 'react';
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Style from "./SignInandAvatar.module.css";
 import {useNavigate} from 'react-router-dom';
-import avatar from '../assets/people.png'
+import avatar from '../../assets/people.png'
 
 export default function SignInandLogOut({SignedIn = true}) {
   const nav = useNavigate();

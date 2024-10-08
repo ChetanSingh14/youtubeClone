@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import styles from './SearchBar.module.css';  // Importing CSS module
-import icon from '../assets/search.svg';
+import styles from './SearchBar.module.css';
+import icon from '../../assets/search.svg';
 
 export default function SearchBar() {
   const [searchText, setSearchText] = useState('');
