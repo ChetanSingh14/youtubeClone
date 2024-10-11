@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./SignUp.module.css";
 import CloseIcon from "@mui/icons-material/Close";
 import googleIcon from "../../assets/google.svg";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { CloseSignUpForm } from "../../Redux/Login and Credentials/stateOfSignUpForm";
+import { IsLoggedIn } from "../../Redux/Login and Credentials/loginState";
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
@@ -12,7 +15,21 @@ export default function SignUp() {
   });
   const [error, setError] = useState("");
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
+  const SignUpRef = useRef(null);
+  // Function to handle clicks outside of the sign up form
+  const handleClickOutside = (event) => {
+    if (SignUpRef.current && !SignUpRef.current.contains(event.target)) {
+        dispatch(CloseSignUpForm());// Close the menu if clicking outside
+    }
+  };
+  // Use useEffect to add/remove event listener for clicks
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
   // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -38,16 +55,18 @@ export default function SignUp() {
     localStorage.setItem("user", JSON.stringify(formData));
 
     // Redirect to the login page or another page after successful sign-up
-    navigate("/login");
+    // navigate("/login");
 
     // Clear form fields and error
     setFormData({ name: "", email: "", password: "" });
     setError("");
+    dispatch(CloseSignUpForm());
+    dispatch(IsLoggedIn());
   };
 
   return (
     <div className={styles.outer}>
-      <div className={styles.card}>
+      <div className={styles.card} ref={SignUpRef}>
         <div className={styles.main}>
           <div className={styles.header}>
             <h2 className={styles.head}>Create Your Account</h2>
@@ -91,7 +110,10 @@ export default function SignUp() {
             </button>
           </form>
 
-          <div className={styles.close}>
+          <div
+            className={styles.close}
+            onClick={() => dispatch(CloseSignUpForm())}
+          >
             <CloseIcon className={styles.closeIcon} />
           </div>
 
