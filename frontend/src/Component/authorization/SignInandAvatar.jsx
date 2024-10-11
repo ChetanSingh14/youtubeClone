@@ -1,20 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Style from "./SignInandAvatar.module.css";
 import {useNavigate} from 'react-router-dom';
-import avatar from '../assets/people.png'
+import avatar from '../../assets/people.png'
 import GoogleIcon from "@mui/icons-material/Google";
 import SwitchAccountIcon from "@mui/icons-material/SwitchAccount";
 import LogoutIcon from "@mui/icons-material/Logout";
 //This Component is called in Navbar.jsx
-export default function SignInandLogOut({SignedIn = true}) {
+export default function SignInandLogOut({SignedIn = false}) {
   const nav = useNavigate();
+  const [showMenu, setShowMenu] = useState(false);
+  const handleMenuShow = ()=>{
+
+  }
   return (
     <div className={Style.ButtonParentContainer}>
       {SignedIn ? (
-        <div className={Style.AvatarContainer}>
+        <div className={Style.AvatarContainer} onClick={()=>{setShowMenu(!showMenu)}}>
           <img src={avatar} alt="Avatar" className={Style.Avatar} />
-          <div className={Style.AvatarMenu}>
+          {showMenu && (<div className={Style.AvatarMenu}>
             <div className={Style.UserDesc}>
               <img src={avatar} alt="Avatar" className={Style.Avatar} />
               <div className={Style.UserDescText}>
@@ -27,7 +31,7 @@ export default function SignInandLogOut({SignedIn = true}) {
               <li><SwitchAccountIcon/> Switch Accounts</li>
               <li><LogoutIcon/> Sign Out</li>
             </ul>
-          </div>
+          </div>)}
         </div>
       ) : (
         <div className={Style.buttonContainer}>

@@ -42,12 +42,25 @@
     justify-content:left;
 }
 .AvatarMenu>ul{
- list-style: none;
- padding-left: 8px;
+    list-style: none;
+    padding-inline-start: 0px;
+    margin-top: 8px;
+}
+.AvatarMenu>ul>li{
+    height: 6vh;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+    padding-left: 15px;
+}
+.AvatarMenu > ul > li:hover{
+    background-color: rgb(62, 62, 62);
 }
 
 .UserDesc > img{
-    height: 70%;
+    height: 84%;
     width: 27%;
 }
 
@@ -57,5 +70,6 @@
     display: flex;
     gap: 20px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.271);
-    height: 15vh;
+    height: 12vh;
+    margin-bottom: 0px;
 }
