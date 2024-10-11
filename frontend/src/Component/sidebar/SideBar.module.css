@@ -1,7 +1,8 @@
 .outer {
     height: 100vh;
     width: 5vw;
-    margin-top: -22rem;
+    top : 6.5%;
+    left : -0.2%;
     position: fixed;
     display: flex;
     flex-direction: column;

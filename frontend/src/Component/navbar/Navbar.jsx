@@ -9,8 +9,7 @@ import SearchBar from "./SearchBar";
 import styles from "./Navbar.module.css";
 import SignInandLogOut from '../authorization/SignInandAvatar';
 
-export default function Navbar() {
-  
+export default function Navbar({ OpenSignUp }) {
   return (
     <div className={styles.Navbar}>
       <div className={styles.menu_yt}>

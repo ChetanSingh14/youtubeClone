@@ -3,6 +3,9 @@ import styles from "./SignUp.module.css";
 import CloseIcon from "@mui/icons-material/Close";
 import googleIcon from "../../assets/google.svg";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { CloseSignUpForm } from "../../Redux/Login and Credentials/stateOfSignUpForm";
+import { IsLoggedIn } from "../../Redux/Login and Credentials/loginState";
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
@@ -12,7 +15,7 @@ export default function SignUp() {
   });
   const [error, setError] = useState("");
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
   // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -38,11 +41,13 @@ export default function SignUp() {
     localStorage.setItem("user", JSON.stringify(formData));
 
     // Redirect to the login page or another page after successful sign-up
-    navigate("/login");
+    // navigate("/login");
 
     // Clear form fields and error
     setFormData({ name: "", email: "", password: "" });
     setError("");
+    dispatch(CloseSignUpForm());
+    dispatch(IsLoggedIn());
   };
 
   return (
@@ -86,12 +91,15 @@ export default function SignUp() {
             />
             <br />
             {error && <p className={styles.error}>{error}</p>}
-            <button type="submit" className={styles.button}>
+            <button
+              type="submit"
+              className={styles.button}
+            >
               Create Your Account
             </button>
           </form>
 
-          <div className={styles.close}>
+          <div className={styles.close} onClick={()=> dispatch(CloseSignUpForm())}>
             <CloseIcon className={styles.closeIcon} />
           </div>
 

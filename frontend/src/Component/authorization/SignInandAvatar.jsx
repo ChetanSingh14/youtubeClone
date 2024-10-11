@@ -6,40 +6,71 @@ import avatar from '../../assets/people.png'
 import GoogleIcon from "@mui/icons-material/Google";
 import SwitchAccountIcon from "@mui/icons-material/SwitchAccount";
 import LogoutIcon from "@mui/icons-material/Logout";
-//This Component is called in Navbar.jsx
-export default function SignInandLogOut({SignedIn = false}) {
-  const nav = useNavigate();
-  const [showMenu, setShowMenu] = useState(false);
-  const handleMenuShow = ()=>{
+import { useDispatch, useSelector } from 'react-redux';
+import { OpenSignUpForm } from '../../Redux/Login and Credentials/stateOfSignUpForm';
+import { NotLoggedIn } from '../../Redux/Login and Credentials/loginState';
 
+//This Component is called in Navbar.jsx
+export default function SignInandLogOut() {
+  const dispatch = useDispatch();
+  const isSignedIn = useSelector((state) => state.Login_Status);
+  const [showMenu, setShowMenu] = useState(false);
+  let Name = "";
+  let Email = "";
+
+  // Parse user info from localStorage if it exists
+  const user = localStorage.getItem("user");
+
+  if (user) {
+    const userData = JSON.parse(user); // Parse the string into an object
+    Name = userData.name; // Access the name property
+    Email = userData.email; // Access the email property
+  }
+  const handleLogOut = () => {
+    localStorage.removeItem("user"); // Delete
+    dispatch(NotLoggedIn())
   }
   return (
     <div className={Style.ButtonParentContainer}>
-      {SignedIn ? (
-        <div className={Style.AvatarContainer} onClick={()=>{setShowMenu(!showMenu)}}>
-          <img src={avatar} alt="Avatar" className={Style.Avatar} />
-          {showMenu && (<div className={Style.AvatarMenu}>
-            <div className={Style.UserDesc}>
-              <img src={avatar} alt="Avatar" className={Style.Avatar} />
-              <div className={Style.UserDescText}>
-                Hi
-                Arihant
+      {isSignedIn ? (
+        <>
+          <div
+            className={Style.AvatarContainer}
+            onClick={() => {
+              setShowMenu(!showMenu);
+            }}
+          >
+            <img src={avatar} alt="Avatar" className={Style.Avatar} />
+          </div>
+          {showMenu && (
+            <div className={Style.AvatarMenu}>
+              <div className={Style.UserDesc}>
+                <img src={avatar} alt="Avatar" className={Style.AvatarMenuAvatar}/>
+                <div className={Style.UserDescText}>
+                  <span className={Style.AvatarMenuUserName}>{Name}</span>
+                  <br />
+                  <span className={Style.AvatarMenuEmail}>{Email}</span>
+                </div>
               </div>
+              <ul>
+                <li>
+                  <GoogleIcon /> Google Account
+                </li>
+                <li>
+                  <SwitchAccountIcon /> Switch Accounts
+                </li>
+                <li onClick = {handleLogOut}>
+                  <LogoutIcon /> Sign Out
+                </li>
+              </ul>
             </div>
-            <ul>
-              <li><GoogleIcon/> Google Account</li>
-              <li><SwitchAccountIcon/> Switch Accounts</li>
-              <li><LogoutIcon/> Sign Out</li>
-            </ul>
-          </div>)}
-        </div>
+          )}
+        </>
       ) : (
         <div className={Style.buttonContainer}>
           <button
             className={Style.SignInButton}
-            onClick={() => {
-              nav("/auth");
-            }}
+            onClick={() => dispatch(OpenSignUpForm())}
           >
             <AccountCircleIcon fontSize="small" />
             Sign In

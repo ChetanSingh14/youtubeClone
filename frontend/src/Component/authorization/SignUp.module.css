@@ -1,11 +1,18 @@
 .outer{
     display: flex;
     width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
     justify-content: center;
     align-items: center;
+    z-index: 100;
+background-color: rgba(0, 0, 0, 0.67); /* Black overlay */
 }
 
 .card{
+    z-index: 100;
+    width: 100vw;
     background-color: rgb(79, 82, 97);
     width: 35%;
     display: flex;
