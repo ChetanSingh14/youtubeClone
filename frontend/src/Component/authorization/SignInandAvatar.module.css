@@ -88,3 +88,6 @@
   font-weight: 400;
 }
 
+.AvatarMenuAvatar {
+pointer-events: none; /* Ignore hover events */
+}

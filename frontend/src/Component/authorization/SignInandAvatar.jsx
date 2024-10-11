@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Style from "./SignInandAvatar.module.css";
 import {useNavigate} from 'react-router-dom';
@@ -15,8 +15,22 @@ export default function SignInandLogOut() {
   const dispatch = useDispatch();
   const isSignedIn = useSelector((state) => state.Login_Status);
   const [showMenu, setShowMenu] = useState(false);
+  const AvatarMenu = useRef(null);
   let Name = "";
   let Email = "";
+  // Function to handle clicks outside of the menu
+  const handleClickOutside = (event) => {
+    if (AvatarMenu.current && !AvatarMenu.current.contains(event.target)) {
+      setShowMenu(false); // Close the menu if clicking outside
+    }
+  };
+  // Use useEffect to add/remove event listener for clicks
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   // Parse user info from localStorage if it exists
   const user = localStorage.getItem("user");
@@ -28,8 +42,8 @@ export default function SignInandLogOut() {
   }
   const handleLogOut = () => {
     localStorage.removeItem("user"); // Delete
-    dispatch(NotLoggedIn())
-  }
+    dispatch(NotLoggedIn());
+  };
   return (
     <div className={Style.ButtonParentContainer}>
       {isSignedIn ? (
@@ -43,9 +57,13 @@ export default function SignInandLogOut() {
             <img src={avatar} alt="Avatar" className={Style.Avatar} />
           </div>
           {showMenu && (
-            <div className={Style.AvatarMenu}>
+            <div className={Style.AvatarMenu} ref={AvatarMenu}>
               <div className={Style.UserDesc}>
-                <img src={avatar} alt="Avatar" className={Style.AvatarMenuAvatar}/>
+                <img
+                  src={avatar}
+                  alt="Avatar"
+                  className={Style.AvatarMenuAvatar}
+                />
                 <div className={Style.UserDescText}>
                   <span className={Style.AvatarMenuUserName}>{Name}</span>
                   <br />
@@ -59,7 +77,7 @@ export default function SignInandLogOut() {
                 <li>
                   <SwitchAccountIcon /> Switch Accounts
                 </li>
-                <li onClick = {handleLogOut}>
+                <li onClick={handleLogOut}>
                   <LogoutIcon /> Sign Out
                 </li>
               </ul>

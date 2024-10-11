@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./SignUp.module.css";
 import CloseIcon from "@mui/icons-material/Close";
 import googleIcon from "../../assets/google.svg";
@@ -16,6 +16,20 @@ export default function SignUp() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const SignUpRef = useRef(null);
+  // Function to handle clicks outside of the sign up form
+  const handleClickOutside = (event) => {
+    if (SignUpRef.current && !SignUpRef.current.contains(event.target)) {
+        dispatch(CloseSignUpForm());// Close the menu if clicking outside
+    }
+  };
+  // Use useEffect to add/remove event listener for clicks
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
   // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -52,7 +66,7 @@ export default function SignUp() {
 
   return (
     <div className={styles.outer}>
-      <div className={styles.card}>
+      <div className={styles.card} ref={SignUpRef}>
         <div className={styles.main}>
           <div className={styles.header}>
             <h2 className={styles.head}>Create Your Account</h2>
@@ -91,15 +105,15 @@ export default function SignUp() {
             />
             <br />
             {error && <p className={styles.error}>{error}</p>}
-            <button
-              type="submit"
-              className={styles.button}
-            >
+            <button type="submit" className={styles.button}>
               Create Your Account
             </button>
           </form>
 
-          <div className={styles.close} onClick={()=> dispatch(CloseSignUpForm())}>
+          <div
+            className={styles.close}
+            onClick={() => dispatch(CloseSignUpForm())}
+          >
             <CloseIcon className={styles.closeIcon} />
           </div>
 
