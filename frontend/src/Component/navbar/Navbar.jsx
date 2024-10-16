@@ -1,7 +1,5 @@
-import React from "react";
 import menu from "../../assets/3dot.svg";
 import notif from "../../assets/notif.svg";
-import profile from "../../assets/profile.svg";
 import upload from "../../assets/upload.svg";
 import voice from "../../assets/voice.svg";
 import yt from "../../assets/yt.png";
@@ -9,7 +7,7 @@ import SearchBar from "./SearchBar";
 import styles from "./Navbar.module.css";
 import SignInandLogOut from '../authorization/SignInandAvatar';
 
-export default function Navbar({ OpenSignUp }) {
+export default function Navbar() {
   return (
     <div className={styles.Navbar}>
       <div className={styles.menu_yt}>

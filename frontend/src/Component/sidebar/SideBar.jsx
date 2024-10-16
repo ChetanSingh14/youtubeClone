@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styles from "./SideBar.module.css";
 import home from '../../assets/home.svg';
 import shorts from '../../assets/shorts.svg';
