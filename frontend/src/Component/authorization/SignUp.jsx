@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import styles from "./SignUp.module.css";
 import CloseIcon from "@mui/icons-material/Close";
 import googleIcon from "../../assets/google.svg";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { CloseSignUpForm } from "../../Redux/Login and Credentials/stateOfSignUpForm";
 import { IsLoggedIn } from "../../Redux/Login and Credentials/loginState";
@@ -14,7 +14,6 @@ export default function SignUp() {
     password: "",
   });
   const [error, setError] = useState("");
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const SignUpRef = useRef(null);
   // Function to handle clicks outside of the sign up form

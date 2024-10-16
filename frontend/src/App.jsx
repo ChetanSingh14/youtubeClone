@@ -1,9 +1,8 @@
-import React, { useState } from "react";
 import Filter from "./Component/filter/Filter";
 import Navbar from "./Component/navbar/Navbar";
 import SideBar from "./Component/sidebar/SideBar";
 import SignUp from "./Component/authorization/SignUp";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Videos from "./Component/Video/Videos";
 
 
